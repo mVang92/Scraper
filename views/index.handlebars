@@ -1,4 +1,4 @@
-<header>
+<header id="header">
     {{!-- Materialize Navbar --}}
     <nav class="grey darken-2" role="navigation">
         <div class="nav-wrapper">
@@ -28,28 +28,32 @@
 <div class="container">
     <div class="row">
         {{!-- Handlebars partial blocks --}}
-        <div class="col-md-12">
+        <div class="col s12">
             {{!-- On initial view --}}
             {{#if current}}
-            {{> current_articles }}
+            {{> currentArticles }}
             {{/if}}
             {{!-- On saved view --}}
             {{#if saved}}
-            {{> saved_articles }}
+            {{> savedArticles }}
             {{/if}}
             {{!-- On hidden view --}}
             {{#if hidden}}
-            {{> hidden_articles }}
+            {{> hiddenArticles }}
             {{/if}}
         </div>
     </div>
+</div>
+
+<div id="back2top">
+    <a href="#header">Back to Top</a>
 </div>
 
 {{!-- Footer --}}
 <footer class="">
     <div class="container">
         <div class="row">
-
+            
         </div>
     </div>
 </footer>

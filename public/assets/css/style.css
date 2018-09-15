@@ -33,3 +33,13 @@ img {
 #displayComments {
 	border: 1px solid black;
 }
+
+.saveArticle,
+.hideArticle {
+	cursor: pointer;
+}
+
+#back2top {
+	text-align: right;
+	margin-right: 50px;
+}

@@ -13,7 +13,7 @@ var router = express.Router();
 router.get("/articles/:id", function (req, res) {
     // queries the db to find the article with a matching id 
     Articles.findOne({ "_id": req.params.id })
-        // populates all of the notes associated with it
+        // populates all of the comments associated with it
         .populate("comments")
         // executes the query
         .exec(function (error, doc) {
@@ -38,8 +38,8 @@ router.post("/articles/:id", function (req, res) {
             console.log(error);
         } else {
             // Uses the article id to find and update it's note
-            Articles.findOneAndUpdate({ "_id": req.params.id }, { "notes": doc._id })
-                .populate("notes")
+            Articles.findOneAndUpdate({ "_id": req.params.id }, { "comments": doc._id })
+                .populate("comments")
                 // Executes the above query
                 .exec(function (err, doc) {
                     // Log errors if any
