@@ -1,6 +1,7 @@
-<header id="header">
+<div id="top"></div>
+<header>
     {{!-- Materialize Navbar --}}
-    <nav class="grey darken-2" role="navigation">
+    <nav class="grey darken-1" role="navigation">
         <div class="nav-wrapper">
             <a id="logo-container" href="/" class="brand-logo left">
                 <img id="logo" src="">
@@ -45,15 +46,33 @@
     </div>
 </div>
 
+{{!-- Modal Structure --}}
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div id="commentsSection">
+            <div id="commentDiv">
+                <div class="col s12">
+                    <div id="comments"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="save"></a>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+</div>
+
+{{!-- Back to Top link --}}
 <div id="back2top">
-    <a href="#header">Back to Top</a>
+    <a href="#top">Back to Top</a>
 </div>
 
 {{!-- Footer --}}
 <footer class="">
     <div class="container">
         <div class="row">
-            
+
         </div>
     </div>
 </footer>

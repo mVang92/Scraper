@@ -1,3 +1,5 @@
+var currentURL = window.location.origin;
+
 $(document).ready(function () {
     // Modal ready upon start
     $(".modal").modal();
@@ -23,7 +25,7 @@ $(document).ready(function () {
                     $("#titleInput").val(data.notes.title);
                     $("#bodyInput").val(data.notes.body);
                 }
-                
+
             });
     })
 
@@ -51,11 +53,30 @@ $(document).ready(function () {
             });
     })
 
-    $(".saveArticle").on("click", function(){
+    $(".saveArticle").on("click", function () {
         console.log("save button")
+        var articleId = $(this).attr("data-id");
+        var articleToSave = $(this).parent().parent().parent();
+        $.post({
+            url: currentURL + "/save",
+            data: {
+                articleId: articleId
+            }
+        })
+            .done(function (data) {
+                console.log(data);
+                articleToSave.remove();
+            })
+            .fail(function (error) {
+                console.log(error);
+            })
     })
 
-    $(".hideArticle").on("click", function(){
+    $(".unsaveArticle").on("click", function () {
+        console.log("remove save button")
+    })
+
+    $(".hideArticle").on("click", function () {
         console.log("hide button")
     })
 });
