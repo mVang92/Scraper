@@ -4,6 +4,7 @@ $(document).ready(function () {
     // Modal ready upon start
     $(".modal").modal();
 
+    // Click function when user clicks on add/view comments
     $(".comments").on("click", function () {
         $("#save").empty();
         $("#comments").empty();
@@ -15,44 +16,20 @@ $(document).ready(function () {
             method: "GET",
             url: "/articles/" + thisId
         })
-            // adds the note information to the page
+            // Adds the comment information to the page
             .done(function (data) {
                 $("#comments").append("<h5 class='notesArticle'>" + data.title + "</h5>");
                 $("#comments").append("<input id='titleInput' name='title' placeholder='Add title'>");
                 $("#comments").append("<textarea id='bodyInput' name='body' placeholder='Add comment'></textarea>");
-                $("#save").append("<button data-id=' + data._id + ' class='modal-close waves-effect waves-red btn-flat'>Save</button>");
+                $("#save").append("<button data-id='" + data._id + "' id='saveComment' class='modal-close waves-effect waves-red btn-flat'>Save</button>");
                 if (data.notes) {
                     $("#titleInput").val(data.notes.title);
                     $("#bodyInput").val(data.notes.body);
                 }
-
             });
     })
 
-    // Save comments when clicked
-    $("#save").on("click", function () {
-        console.log("Saved")
-        // grabs the id associated with the article from the submit button
-        var thisId = $(this).attr("data-id");
-        // runs a POST request to change the note, using what's entered in the inputs
-        $.ajax({
-            method: "POST",
-            url: "/articles/" + thisId,
-            data: {
-                // captures from title input
-                title: $("#titleInput").val(),
-                // takes values from note textarea
-                body: $("#bodyInput").val()
-            }
-        })
-            .done(function (data) {
-                // logs the response
-                console.log(data);
-                // empties the notes section
-                $("#comments").empty();
-            });
-    })
-
+    // Save the article that was clicked
     $(".saveArticle").on("click", function () {
         console.log("save button")
         var articleId = $(this).attr("data-id");
@@ -72,11 +49,87 @@ $(document).ready(function () {
             })
     })
 
+    // Remove the saved article from the save list
     $(".unsaveArticle").on("click", function () {
         console.log("remove save button")
+        var articleId = $(this).attr("data-id");
+        var articleToUnsave = $(this).parent().parent().parent();
+        $.post({
+            url: currentURL + "/unsave",
+            data: {
+                articleId: articleId
+            }
+        })
+            .done(function (data) {
+                console.log(data);
+                articleToUnsave.remove();
+            })
+            .fail(function (error) {
+                console.log(error);
+            })
     })
 
+    // Hide the article from the main page and bring it to the hide page
     $(".hideArticle").on("click", function () {
         console.log("hide button")
+        var articleId = $(this).attr("data-id");
+        var articleToHide = $(this).parent().parent().parent();
+        $.post({
+            url: currentURL + "/hide",
+            data: {
+                articleId: articleId
+            }
+        })
+            .done(function (data) {
+                console.log(data);
+                articleToHide.remove();
+            })
+            .fail(function (error) {
+                console.log(error);
+            })
+    })
+
+    $(".unhideArticle").on("click", function () {
+        console.log("unhide")
+        var articleId = $(this).attr("data-id");
+        var articleToUnhide = $(this).parent().parent().parent();
+        $.post({
+            url: currentURL + "/unhide",
+            data: {
+                articleId: articleId
+            }
+        })
+            .done(function (data) {
+                console.log(data);
+                articleToUnhide.remove();
+            })
+            .fail(function (error) {
+                console.log(error);
+            })
+    })
+
+    // Save comments when clicked
+    $(document).on("click", "#saveComment", function () {
+        console.log("Saved")
+        // grabs the id associated with the article from the submit button
+        var thisId = $(this).attr("data-id");
+        // runs a POST request to change the note, using what's entered in the inputs
+        $.ajax({
+            method: "POST",
+            url: "/articles/" + thisId,
+            data: {
+                // captures from title input
+                title: $("#titleInput").val(),
+                // takes values from note textarea
+                body: $("#bodyInput").val()
+            }
+        })
+            .done(function (data) {
+                // logs the response
+                console.log(data);
+                // Clears comments section
+                $("#comments").html("Comment stored!");
+                $("#save").empty();
+            });
     })
 });

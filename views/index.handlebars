@@ -1,13 +1,13 @@
 <div id="top"></div>
 <header>
     {{!-- Materialize Navbar --}}
-    <nav class="grey darken-1" role="navigation">
+    <nav role="navigation">
         <div class="nav-wrapper">
             <a id="logo-container" href="/" class="brand-logo left">
                 <img id="logo" src="">
-                <span id="appName">Scraped</span>
+                <span id="appName">To the Point News</span>
             </a>
-            <!-- Dropdown Structure -->
+            {{!-- Dropdown Structure --}}
             <ul id="dropdown1" class="dropdown-content hide-on-large-only">
                 <li><a href="/">Home</a></li>
                 <li><a href="/">Scrape New Articles</a></li>
@@ -20,16 +20,17 @@
                 <li><a href="/saved">Saved</a></li>
                 <li><a href="/hidden">Hidden</a></li>
             </ul>
-            <!-- Dropdown Trigger -->
+            {{!-- Dropdown Trigger --}}
             <li><a class="dropdown-button right hide-on-large-only" href="#" data-activates="dropdown1"><i class="material-icons right">arrow_drop_down</i></a></li>
         </div>
     </nav>
 </header>
 
+{{!-- Main Container for displaying articles --}}
 <div class="container">
     <div class="row">
         {{!-- Handlebars partial blocks --}}
-        <div class="col s12">
+        <div class="col s12 mainDisplay">
             {{!-- On initial view --}}
             {{#if current}}
             {{> currentArticles }}
@@ -49,30 +50,24 @@
 {{!-- Modal Structure --}}
 <div id="modal1" class="modal bottom-sheet">
     <div class="modal-content">
-        <div id="commentsSection">
-            <div id="commentDiv">
-                <div class="col s12">
-                    <div id="comments"></div>
-                </div>
+        <div class="container">
+            <div class="col s12">
+                <div id="comments"></div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <a id="save"></a>
-        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+        <button href="#!" class="modal-close waves-effect waves-red btn-flat">Close</button>
     </div>
 </div>
 
 {{!-- Back to Top link --}}
 <div id="back2top">
-    <a href="#top">Back to Top</a>
+    <a href="#top" class="white-text">Back to Top &#8657;</a>
 </div>
 
 {{!-- Footer --}}
-<footer class="">
-    <div class="container">
-        <div class="row">
-
-        </div>
-    </div>
+<footer>
+    <div class="footerText grey-text darken-2">2018 Meng Vang</div>
 </footer>
