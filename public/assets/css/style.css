@@ -1,0 +1,35 @@
+/* div {
+	border: 1px solid red;
+} */
+
+body {
+	background: lightgrey;
+}
+
+nav {
+	padding: 0px 15px 0px 15px;
+}
+
+#appName {
+	
+}
+
+#dropdown1 {
+	width: 180px !important;
+	right: 0 !important;
+}
+
+img {
+	margin-left: 50%;
+	padding-top: 10px;
+	width: none !important;
+}
+
+.title {
+	font-weight: bold;
+}
+
+#commentsBox,
+#displayComments {
+	border: 1px solid black;
+}
