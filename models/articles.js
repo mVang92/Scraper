@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 // Create ArticlesSchema
-var ArticlesSchema = new Schema ({
+var ArticlesSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -27,11 +27,11 @@ var ArticlesSchema = new Schema ({
         type: Number,
         default: 0
     },
-    notes: {
+    comments: [{
         // Saves one comment's ObjectID
         type: Schema.Types.ObjectId,
-        ref: "Notes"
-    }
+        ref: "Comments"
+    }]
 });
 
 // Creates Articles model
