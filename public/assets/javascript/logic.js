@@ -90,7 +90,6 @@ $(document).ready(function () {
     })
 
     $(".unhideArticle").on("click", function () {
-        console.log("unhide")
         var articleId = $(this).attr("data-id");
         var articleToUnhide = $(this).parent().parent().parent();
         $.post({
@@ -110,26 +109,24 @@ $(document).ready(function () {
 
     // Save comments when clicked
     $(document).on("click", "#saveComment", function () {
-        console.log("Saved")
         // grabs the id associated with the article from the submit button
-        var thisId = $(this).attr("data-id");
-        // runs a POST request to change the note, using what's entered in the inputs
-        $.ajax({
-            method: "POST",
-            url: "/articles/" + thisId,
-            data: {
-                // captures from title input
-                title: $("#titleInput").val(),
-                // takes values from note textarea
-                body: $("#bodyInput").val()
-            }
-        })
-            .done(function (data) {
-                // logs the response
-                console.log(data);
-                // Clears comments section
-                $("#comments").html("Comment stored!");
-                $("#save").empty();
-            });
+        // var thisId = $(this).attr("data-id");
+        // // runs a POST request to change the note, using what's entered in the inputs
+        // console.log(thisId)
+        // $.ajax({
+        //     method: "POST",
+        //     url: "/articles/" + thisId,
+        //     data: {
+        //         // captures from title input
+        //         title: $("#titleInput").val(),
+        //         // takes values from note textarea
+        //         body: $("#bodyInput").val()
+        //     }
+        // })
+        //     .done(function (data) {
+        //         // Clears comments section
+        //         $("#comments").html("Comment stored!");
+        //         $("#save").empty();
+        //     });
     })
 });

@@ -7,17 +7,17 @@ var Schema = mongoose.Schema;
 // Creates NotesSchema
 var CommentsSchema = new Schema({
 	title: {
-	    type: String
+		type: String,
+		required: true
 	},
 	body: {
-	    type: String
+		type: String,
+		required: true
 	}
 });
 
 // Creates Comments model
-var comments = mongoose.model("Comments", CommentsSchema);
+var Comments = mongoose.model("Comments", CommentsSchema);
 
 // Exports Comments model
-module.exports = comments;
-
-
+module.exports = Comments;

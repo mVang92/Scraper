@@ -11,6 +11,7 @@ var router = express.Router();
 
 // Grabs an article by it's ObjectId
 router.get("/articles/:id", function (req, res) {
+    console.log("get comments")
     // queries the db to find the article with a matching id 
     Articles.findOne({ "_id": req.params.id })
         // populates all of the comments associated with it
@@ -29,6 +30,7 @@ router.get("/articles/:id", function (req, res) {
 
 // Creates a new note or replaces an existing note
 router.post("/articles/:id", function (req, res) {
+    console.log("save comments")
     // Creates a new note and passes the req.body to the entry
     var newComment = new Comments(req.body);
     // Saves the new note the db
